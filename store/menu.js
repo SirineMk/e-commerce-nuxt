@@ -1,3 +1,4 @@
+
 const state = {
     categories: [],
 };
@@ -10,7 +11,7 @@ const getters = {
 
 const actions = {
     getCategories({ commit }) {
-        return axios.get('/categories')
+        return this.$axios.get('/categories')
             .then((response) => {
                 commit('categories', response.data);
             })

@@ -60,6 +60,7 @@
 
         <tr >
           <td class="actions" colspan="6">
+            <nuxt-link to='/checkout'>
             <input
               type="button"
               @click="navigateToCheckout()"
@@ -67,6 +68,7 @@
               name="proceed"
               class="checkout-button button alt wc-forward"
             />
+            </nuxt-link>
           </td>
         </tr>
 
@@ -87,7 +89,6 @@ export default {
     },
     navigateToCheckout(){
       this.$store.state.mainCart = this.cart;
-      this.$router.push({path:"/checkout"});
     }
   }
 };

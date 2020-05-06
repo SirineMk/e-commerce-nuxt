@@ -10,6 +10,7 @@
 import Header from "~/components/Header.vue";
 import Footer from "~/components/Footer.vue";
 import {mapGetters} from "vuex";
+
 export default {
   components: {
     "app-header": Header,
@@ -17,27 +18,27 @@ export default {
   },
   data: function(){
     return{
-      cartTotal: '',
-      nbProducts: 0
+      cartTotal: 0,
+      nbProducts: 0,
     }
   },
   computed: {
     ...mapGetters(["categories","cartDetails"])
   },
-  created() {
-    this.$store.dispatch('getCategories');
-    console.log(this.cartDetails);
-    if (document.cookie.indexOf('cartId') > -1) {
-      //cookie exists
-      this.$store.dispatch('getCart',this.$cookie.get('cartId'));
-      this.cartTotal =this.cartDetails.total;
-      this.nbProducts = this.cartDetails.items.length;
-      this.$cookie.set('cartTotal',this.cartDetails.total);
-    } else {
+  async fetch() {
+    if (this.$cookie.get('cartId') === undefined) {
+      //cookie not exists
       this.cartTotal = '0';
-      this.$cookie.set('cartId','xr7HaIK');
+      this.$cookie.set('cartId','_Eg-fZ6');
+    } else {
+      await this.$store.dispatch('getCart',this.$cookie.get('cartId'));
+      this.cartTotal =this.cartDetails.total;
+       this.nbProducts = this.cartDetails.items.length;
+      this.$cookie.set('cartTotal',this.cartDetails.total);
 
-    }
+    };
+      return this.$store.dispatch('getCategories');
+
   }
 };
 </script>

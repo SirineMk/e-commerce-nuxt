@@ -19,13 +19,15 @@
         </div>
 
         <div class="col-sm-3">
-          <div class="shopping-item" @click="navigateToCart()">
+          <router-link to="/cart">
+          <div class="shopping-item">
             <a href=""
               >Cart : <span class="cart-amunt">{{cartTotal}} €</span>
               <i class="fa fa-shopping-cart"></i>
               <span class="product-count">{{nbProducts}}</span></a
             >
           </div>
+          </router-link>
         </div>
       </div>
       <!--
@@ -45,13 +47,17 @@
                   ><a>Home</a></router-link
                 >
               </li>
+
               <li
                 @click="navigateToShop(cat.productListId, cat.name)"
                 v-for="cat in categories"
                 :key="cat.id"
               >
+                <nuxt-link :to="'/shop/'+cat.productListId">
                 <a href="">{{ cat.name }}</a>
+                </nuxt-link>
               </li>
+
             </ul>
           </div>
         </div>
@@ -64,7 +70,7 @@
 export default {
   props: {
     categories: [Array],
-    cartTotal: [String],
+    cartTotal: [Number],
     nbProducts: [Number]
   },
  /* data: function(){
@@ -76,10 +82,6 @@ export default {
     navigateToShop(shopId, shopName) {
       this.$cookie.set('shopName', shopName);
       this.$cookie.set('shopId', shopId);
-      this.$router.push("/shop/" + shopId);
-    },
-    navigateToCart(){
-      this.$router.push("/cart");
     }
   },
   /*computed: {

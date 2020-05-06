@@ -44,8 +44,6 @@
                 class="input-text qty text"
                 title="Qty"
                 name="quantity"
-                min="1"
-                step="1"
                v-model="quantity"
               />
             </div>
@@ -75,7 +73,7 @@ export default {
     AddToCart
   },
   props: {
-    productId: [Number]
+    productId: [String]
   },
     data: function() {
       return {
@@ -87,10 +85,10 @@ export default {
   computed: {
     ...mapGetters(["productDetails"])
   },
-  created() {
+  async fetch() {
     this.shopName = this.$cookie.get('shopName');
     this.shopId = this.$cookie.get('shopId');
-    this.$store.dispatch('getProductDetails',this.productId);
+    return this.$store.dispatch('getProductDetails',this.productId);
 
   }
 };

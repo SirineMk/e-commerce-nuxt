@@ -32,7 +32,6 @@ import Products from "~/components/Home/Products";
 import {mapGetters} from "vuex";
 
 export default {
-  name: "Home",
   components: {
     Carousel,
     PromoArea,
@@ -40,13 +39,11 @@ export default {
     RecentlyViewed,
     Products
   },
-  props:{
-    categories: [Array]
-  },
   computed: {
-    ...mapGetters(["topSellersProducts", "topNewProducts"])
+    ...mapGetters(["topSellersProducts", "topNewProducts", "categories"])
   },
   created() {
+    this.$store.dispatch('getCategories');
     this.$store.dispatch('getTopSellers');
     this.$store.dispatch('getTopNew');
   }

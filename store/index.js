@@ -1,7 +1,15 @@
-import Vuex from 'Vuex'
+import vuex from 'vuex'
+import vue from 'vue'
+import home from './home.js'
+import menu from "./menu";
+import products from "./products";
+import cart from "./cart"
+import checkout from "./checkout";
+
+vue.use(vuex);
 
 const createStore =() => {
-    return new Vuex.Store({
+    return new vuex.Store({
         state:{
             mainCart: {}
           },

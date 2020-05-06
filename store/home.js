@@ -1,3 +1,4 @@
+
 const state = {
     topSellersProducts: [],
     topNewProducts: []
@@ -13,7 +14,7 @@ const getters = {
 
 const actions = {
     getTopSellers({ commit }) {
-        return axios.get("/top-sellers-products")
+        return this.$axios.get("/top-sellers-products")
             .then((response) => {
                 commit('topSeller', response.data);
             })
@@ -22,7 +23,7 @@ const actions = {
             });
     },
     getTopNew({ commit }) {
-        return axios.get("/top-new-products")
+        return this.$axios.get("/top-new-products")
             .then((response) => {
                 commit('topNew', response.data);
             })

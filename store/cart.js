@@ -7,9 +7,9 @@ const getters = {
         return  state.cartDetails;
     }
 };
-const actions = {
+ const actions = {
     addToCart({commit}, payload) {
-        return axios.put('/carts/' + payload.id, payload)
+        return this.$axios.put('/carts/' + payload.id, payload)
             .then((response) => {
                 commit('cartUpdated', response.data);
 
@@ -19,9 +19,8 @@ const actions = {
             });
     },
     getCart({commit}, payload) {
-        return axios.get("/carts/" + payload)
+        return this.$axios.get("/carts/" + payload)
             .then(response => {
-                console.log("carrt", response.data);
                 commit('cartDetails', response.data)
             })
             .catch(function (error) {
@@ -30,7 +29,7 @@ const actions = {
     }
 };
 
-const mutations = {
+ const mutations = {
     cartUpdated(state, payload) {
         console.log(state,payload)
     },

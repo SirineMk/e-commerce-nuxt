@@ -1,3 +1,4 @@
+
 const state = {
     customer: {
         civility: '',
@@ -41,7 +42,7 @@ const getters = {
 
 const actions = {
     submitCheckout({commit}, payload) {
-        return axios.post('/orders', payload)
+        return this.$axios.post('/orders', payload)
             .then((response) => {
                 commit('orderSubmitted', response.data);
 

@@ -55,9 +55,9 @@ export default {
   computed: {
     ...mapGetters(["products"])
   },
-  created() {
+  async fetch() {
     this.shopId = this.$route.params.id;
-    this.$store.dispatch('getProducts',this.shopId);
+    return  this.$store.dispatch('getProducts',this.shopId);
   }
 };
 </script>

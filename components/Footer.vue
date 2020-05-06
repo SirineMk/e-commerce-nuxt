@@ -23,7 +23,9 @@
             <h2 class="footer-wid-title">Categories</h2>
             <ul>
               <li @click="navigateToShop(cat.productListId, cat.name)" v-for = "cat in categories" :key="cat.id">
+                <nuxt-link :to="'/shop/'+cat.productListId">
                 <a href="">{{ cat.name }}</a>
+                </nuxt-link>
               </li>
             </ul>
           </div>
@@ -58,7 +60,6 @@
       navigateToShop(shopId, shopName) {
         this.$cookie.set('shopName', shopName);
         this.$cookie.set('shopId', shopId);
-        this.$router.push("/shop/" + shopId);
       }
     }
   };

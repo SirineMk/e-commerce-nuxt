@@ -4,7 +4,7 @@
       <img :src="getProductImage(product.imageName)" alt />
     </div>
     <h2>
-      <a href @click="navigateToProduct(product.id)">{{product.name}}</a>
+      <nuxt-link :to="'/shop/' + shopId + '/' + product.id"><a href @click="navigateToProduct(product.id)">{{product.name}}</a></nuxt-link>
     </h2>
     <div class="product-carousel-price">
       <ins>${{ product.price.toFixed(2) }}</ins>
@@ -37,7 +37,6 @@
     methods: {
       navigateToProduct(productId) {
         this.$cookie.set('productId', productId);
-        this.$router.push("/shop/" + this.shopId + "/" + productId);
       }
     }
   };

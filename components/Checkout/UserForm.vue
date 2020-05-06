@@ -409,8 +409,8 @@ export default {
     ...mapGetters(["customer"])
   },
   methods: {
-    displayBlock(event) {
-      if (!event.target.checked) {
+    displayBlock() {
+      if (this.differentAddress) {
           this.customer.shippingAddress = {
               civility: this.customer.civility,
               firstName: this.customer.firstName,

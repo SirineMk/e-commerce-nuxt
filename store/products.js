@@ -1,3 +1,4 @@
+
 const state = {
     products : [],
     productDetails: {}
@@ -14,7 +15,7 @@ const getters = {
 
 const actions = {
     getProducts({commit}, payload) {
-        return axios.get('products-lists/' + payload)
+        return this.$axios.get('products-lists/' + payload)
             .then((response) => {
                 commit('Products', response.data);
             })
@@ -23,7 +24,7 @@ const actions = {
             });
     },
     getProductDetails({commit}, payload) {
-        return axios.get("/products/" + payload)
+        return this.$axios.get("/products/" + payload)
             .then(response => {
                 commit('productDetails', response.data)
             })
